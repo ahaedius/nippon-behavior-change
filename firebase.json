@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "target": "nippon",
     "public": ".",
     "ignore": [
       "firebase.json",
