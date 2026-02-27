@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "tilly-16eee"
+  },
+  "targets": {
+    "tilly-16eee": {
+      "hosting": {
+        "nippon": [
+          "nippon-behavior-change"
+        ]
+      }
+    }
+  }
+}
