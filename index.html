@@ -3,57 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nippon Life – 3-Layer Behavior Change Mechanisms</title>
+  <title>Strategic Taxonomy – Nippon Life Behavior Change</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --sans:   'DM Sans', system-ui, sans-serif;
-      --serif:  'DM Serif Display', Georgia, serif;
-
-      --ink:        #0D0D0D;
-      --ink-mid:    #3D3D3D;
-      --ink-soft:   #6B6B6B;
-      --ink-faint:  #A0A0A0;
-      --paper:      #F6F5F2;
-      --white:      #FFFFFF;
-      --rule:       #E5E3DD;
-      --rule-dark:  #C8C4BC;
-
-      /* Layer accent colours */
-      --access-c:   #2B8CB3;
-      --support-c:  #2A9E72;
-      --sustain-c:  #D97B35;
-
+      --sans:  'DM Sans', system-ui, sans-serif;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --ink:       #0D0D0D;
+      --ink-mid:   #3D3D3D;
+      --ink-soft:  #6B6B6B;
+      --ink-faint: #A0A0A0;
+      --paper:     #F6F5F2;
+      --white:     #FFFFFF;
+      --rule:      #E5E3DD;
+      --rule-dark: #C8C4BC;
+      --access:  #2B8CB3;
+      --support: #2A9E72;
+      --sustain: #D97B35;
       --ease: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       font-family: var(--sans);
       background: var(--paper);
       color: var(--ink);
       min-height: 100vh;
-      padding: 52px 20px 80px;
       font-size: 15px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ═══════════════════════════════════════════════════
-       PAGE HEADER
-    ═══════════════════════════════════════════════════ */
-    .page-header {
-      max-width: 680px;
-      margin: 0 auto 52px;
+    /* ═══════════════════════════════════════════════
+       SHARED NAV
+    ═══════════════════════════════════════════════ */
+    .site-nav {
+      position: sticky; top: 0; z-index: 200;
+      background: #111; border-bottom: 1px solid #2A2A2A;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; height: 50px;
     }
-    .page-header .eyebrow {
-      display: flex;
+    .nav-brand {
+      font: 600 12px var(--sans);
+      letter-spacing: .06em; text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+    }
+    .nav-links { display: flex; gap: 4px; }
+    .nav-links a {
+      font: 500 12px var(--sans);
+      letter-spacing: .04em;
+      color: rgba(255,255,255,.5);
+      text-decoration: none;
+      padding: 6px 12px; border-radius: 3px;
+      transition: background .15s, color .15s;
+    }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,.08); }
+    .nav-links a.active { color: #fff; background: rgba(255,255,255,.12); }
+
+    /* ═══════════════════════════════════════════════
+       LAYOUT
+    ═══════════════════════════════════════════════ */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════════ */
+    .hero {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .eyebrow {
+      display: inline-flex;
       align-items: center;
       gap: 10px;
       font-size: 11px;
@@ -61,894 +89,890 @@
       letter-spacing: .14em;
       text-transform: uppercase;
       color: var(--ink-faint);
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
-    .eyebrow-line {
-      flex: 0 0 28px;
-      height: 1px;
-      background: var(--rule-dark);
-    }
-    .page-header h1 {
+    .eyebrow-line { width: 24px; height: 1px; background: var(--rule-dark); }
+    .hero h1 {
       font-family: var(--serif);
-      font-size: clamp(26px, 4vw, 40px);
+      font-size: clamp(28px, 4.5vw, 44px);
       font-weight: 400;
       color: var(--ink);
-      line-height: 1.18;
-      margin-bottom: 14px;
-      letter-spacing: -.01em;
+      line-height: 1.15;
+      letter-spacing: -.015em;
+      margin-bottom: 6px;
     }
-    .page-header p {
-      font-size: 15px;
+    .hero-sub {
+      font-family: var(--serif);
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 400;
       color: var(--ink-soft);
-      max-width: 540px;
-      line-height: 1.65;
+      font-style: italic;
+      margin-bottom: 20px;
     }
-    .header-rule {
-      margin-top: 28px;
-      height: 1px;
-      background: var(--rule);
-    }
-
-    /* ═══════════════════════════════════════════════════
-       CONTROLS
-    ═══════════════════════════════════════════════════ */
-    .controls {
-      max-width: 680px;
-      margin: 0 auto 18px;
+    .focus-tags {
       display: flex;
-      justify-content: flex-end;
-      gap: 8px;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 28px;
     }
-    .btn-ghost {
-      font: 500 11.5px var(--sans);
-      letter-spacing: .05em;
-      color: var(--ink-faint);
-      background: transparent;
+    .focus-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      background: var(--white);
       border: 1px solid var(--rule-dark);
       border-radius: 2px;
-      padding: 5px 14px;
-      cursor: pointer;
-      transition: color .15s, border-color .15s, background .15s;
+      padding: 4px 10px;
     }
-    .btn-ghost:hover {
+    .exec-summary {
+      max-width: 620px;
+      font-size: 15px;
       color: var(--ink-mid);
-      border-color: var(--ink-soft);
+      line-height: 1.72;
+    }
+    .exec-summary strong { color: var(--ink); font-weight: 600; }
+
+    /* ═══════════════════════════════════════════════
+       BRIDGE VISUAL
+    ═══════════════════════════════════════════════ */
+    .bridge-section {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .bridge-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 0;
+    }
+    .bridge-side {
       background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 16px 20px;
+      text-align: center;
+    }
+    .bridge-side-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 5px;
+    }
+    .bridge-side-sub {
+      font-size: 11.5px;
+      color: var(--ink-faint);
+      line-height: 1.4;
+    }
+    .bridge-arrow {
+      width: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .bridge-arrow-line {
+      width: 36px;
+      height: 1px;
+      background: var(--rule-dark);
+      position: relative;
+    }
+    .bridge-arrow-line::after {
+      content: '';
+      position: absolute;
+      right: 0; top: -3px;
+      border: 4px solid transparent;
+      border-left-color: var(--rule-dark);
+    }
+    .bridge-center {
+      background: #111;
+      color: #fff;
+      border-radius: 4px;
+      padding: 18px 28px;
+      text-align: center;
+      margin: 0 4px;
+    }
+    .bridge-center-label {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 400;
+      margin-bottom: 3px;
+    }
+    .bridge-center-sub {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+    }
+    @media (max-width: 560px) {
+      .bridge-grid { grid-template-columns: 1fr; gap: 8px; }
+      .bridge-arrow { display: none; }
     }
 
-    /* ═══════════════════════════════════════════════════
-       ACCORDION STACK
-    ═══════════════════════════════════════════════════ */
-    .accordion-stack {
-      max-width: 680px;
-      margin: 0 auto;
+    /* ═══════════════════════════════════════════════
+       SECTION HEADERS
+    ═══════════════════════════════════════════════ */
+    .section-block {
+      padding: 52px 0 0;
+    }
+    .section-block + .section-block { padding-top: 48px; }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 10px;
+    }
+    .section-kicker-num {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.2;
+      letter-spacing: -.01em;
+      margin-bottom: 6px;
+    }
+    .section-desc {
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      font-style: italic;
+      margin-bottom: 28px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       DOMAIN ACCORDION
+    ═══════════════════════════════════════════════ */
+    .domains-list {
       display: flex;
       flex-direction: column;
-      gap: 2px;       /* tight, editorial — layers are siblings */
+      gap: 2px;
+      margin-bottom: 52px;
     }
 
-    /* ═══════════════════════════════════════════════════
-       LAYER ACCORDION  (level 1)
-    ═══════════════════════════════════════════════════ */
-    .layer-accordion {
+    .domain-item {
       background: var(--white);
       border: 1px solid var(--rule);
       overflow: hidden;
-      position: relative;
     }
-    /* First / last radius */
-    .layer-accordion:first-child { border-radius: 4px 4px 0 0; }
-    .layer-accordion:last-child  { border-radius: 0 0 4px 4px; }
-    .layer-accordion:only-child  { border-radius: 4px; }
+    .domain-item:first-child { border-radius: 4px 4px 0 0; }
+    .domain-item:last-child  { border-radius: 0 0 4px 4px; }
 
-    /* ── Level 1 trigger (layer header) ── */
-    .layer-trigger {
+    /* Trigger */
+    .domain-trigger {
       width: 100%;
       display: flex;
-      align-items: stretch;
+      align-items: center;
       gap: 0;
       padding: 0;
       border: none;
-      background: #111111;
-      cursor: pointer;
-      text-align: left;
-      transition: background .18s;
-    }
-    .layer-trigger:hover { background: #1A1A1A; }
-    .layer-trigger:focus-visible {
-      outline: 2px solid rgba(255,255,255,.5);
-      outline-offset: -2px;
-    }
-
-    /* Colored left accent strip */
-    .lt-strip {
-      width: 5px;
-      background: var(--lc-accent);
-      flex-shrink: 0;
-      align-self: stretch;
-    }
-
-    .lt-num {
-      font-family: var(--serif);
-      font-size: 42px;
-      color: var(--lc-accent);
-      line-height: 1;
-      padding: 20px 20px 20px 24px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      opacity: .95;
-    }
-
-    .lt-text {
-      flex: 1;
-      padding: 20px 0;
-    }
-    .lt-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--lc-accent);
-      margin-bottom: 5px;
-    }
-    .lt-badge-dot {
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: var(--lc-accent);
-      flex-shrink: 0;
-    }
-    .lt-question {
-      font-family: var(--serif);
-      font-size: clamp(18px, 2.8vw, 24px);
-      font-weight: 400;
-      color: #FFFFFF;
-      line-height: 1.2;
-      letter-spacing: -.01em;
-    }
-    .lt-tagline {
-      font-size: 12.5px;
-      color: rgba(255,255,255,.48);
-      margin-top: 4px;
-      font-style: italic;
-    }
-
-    .lt-right {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 20px 22px 20px 16px;
-      flex-shrink: 0;
-    }
-    .lt-pill {
-      font-size: 10.5px;
-      font-weight: 500;
-      color: rgba(255,255,255,.38);
-      white-space: nowrap;
-    }
-    @media (max-width: 480px) { .lt-pill { display: none; } }
-
-    .lt-chevron {
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,.18);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: rgba(255,255,255,.7);
-      transition: transform .28s var(--ease), border-color .2s;
-    }
-    .lt-chevron svg { width: 14px; height: 14px; }
-    .layer-trigger[aria-expanded="true"] .lt-chevron {
-      transform: rotate(180deg);
-      border-color: var(--lc-accent);
-      color: var(--lc-accent);
-    }
-
-    /* ── Level 1 collapsible panel ── */
-    .layer-panel {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows .34s var(--ease);
-    }
-    .layer-panel.open { grid-template-rows: 1fr; }
-    .layer-panel > .lp-inner { overflow: hidden; min-height: 0; }
-
-    .lp-body {
-      background: var(--white);
-      border-top: 2px solid var(--lc-accent);
-    }
-
-    /* ═══════════════════════════════════════════════════
-       DOMAINS SECTION
-    ═══════════════════════════════════════════════════ */
-    .domains-section {
-      padding: 24px 28px 20px;
-      border-bottom: 1px solid var(--rule);
-    }
-    .section-eyebrow {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--lc-accent);
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .section-eyebrow::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--rule);
-    }
-
-    .domains-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .domain-chip {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      flex: 1 1 200px;
-      padding: 12px 14px;
-      border: 1px solid var(--rule);
-      border-left: 3px solid var(--lc-accent);
-      background: var(--paper);
-      transition: border-color .15s, background .15s;
-    }
-    .domain-chip:hover {
-      background: var(--white);
-      border-color: var(--rule-dark);
-      border-left-color: var(--lc-accent);
-    }
-    .dc-icon {
-      width: 32px; height: 32px;
-      background: var(--lc-accent);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      border-radius: 2px;
-    }
-    .dc-icon svg { width: 17px; height: 17px; }
-    .dc-info { flex: 1; min-width: 0; }
-    .dc-num {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--lc-accent);
-      margin-bottom: 2px;
-    }
-    .dc-name {
-      font-size: 12.5px;
-      font-weight: 600;
-      color: var(--ink);
-      line-height: 1.3;
-      margin-bottom: 3px;
-    }
-    .dc-caption {
-      font-size: 11px;
-      color: var(--ink-soft);
-      line-height: 1.45;
-    }
-    .dc-comb {
-      font-size: 9.5px;
-      font-weight: 500;
-      color: var(--lc-accent);
-      opacity: .65;
-      margin-top: 5px;
-      font-style: italic;
-    }
-
-    /* ═══════════════════════════════════════════════════
-       CASES SECTION
-    ═══════════════════════════════════════════════════ */
-    .cases-section {
-      padding: 20px 28px 24px;
-    }
-    .cases-list {
-      display: flex;
-      flex-direction: column;
-      margin-top: 2px;
-    }
-
-    /* ═══════════════════════════════════════════════════
-       CASE ACCORDION  (level 2)
-    ═══════════════════════════════════════════════════ */
-    .case-accordion {
-      border-bottom: 1px solid var(--rule);
-      position: relative;
-      transition: background .18s;
-    }
-    .case-accordion:last-child { border-bottom: none; }
-    .case-accordion.placeholder-case { opacity: .7; }
-    .case-accordion.placeholder-case.case-open { opacity: 1; }
-
-    /* Active left indicator */
-    .case-accordion::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      background: var(--lc-accent);
-      opacity: 0;
-      transition: opacity .2s;
-    }
-    .case-accordion.case-open::before { opacity: 1; }
-
-    /* ── Level 2 trigger (case row) ── */
-    .case-trigger {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 16px 14px 12px;
-      border: none;
-      background: transparent;
+      background: #111;
       cursor: pointer;
       text-align: left;
       transition: background .15s;
     }
-    .case-trigger:hover { background: var(--paper); }
-    .case-trigger:focus-visible {
-      outline: 2px solid var(--lc-accent);
-      outline-offset: -2px;
-    }
+    .domain-trigger:hover { background: #1A1A1A; }
+    .domain-trigger:focus-visible { outline: 2px solid rgba(255,255,255,.4); outline-offset: -2px; }
 
-    .ct-logo {
-      width: 36px; height: 36px;
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -.01em;
+    .dt-strip {
+      width: 5px;
+      align-self: stretch;
+      background: var(--dc);
       flex-shrink: 0;
     }
-    .ct-body { flex: 1; min-width: 0; }
-    .ct-company {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-      margin-bottom: 1px;
+    .dt-num {
+      font-family: var(--serif);
+      font-size: 32px;
+      color: var(--dc);
+      line-height: 1;
+      padding: 16px 16px 16px 20px;
+      flex-shrink: 0;
     }
-    .ct-program {
-      font-size: 13.5px;
-      font-weight: 600;
-      color: var(--ink);
-      line-height: 1.25;
+    .dt-text { flex: 1; padding: 16px 0; }
+    .dt-layer-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--dc);
       margin-bottom: 3px;
     }
-    .ct-label {
-      font-size: 11.5px;
-      color: var(--ink-soft);
-      line-height: 1.45;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      transition: opacity .18s;
+    .dt-layer-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--dc); }
+    .dt-name {
+      font-family: var(--serif);
+      font-size: clamp(15px, 2vw, 18px);
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.2;
     }
-    .case-trigger[aria-expanded="true"] .ct-label { display: none; }
-
-    .ct-chevron {
-      width: 24px; height: 24px;
-      border-radius: 50%;
-      border: 1px solid var(--rule-dark);
+    .dt-subtitle {
+      font-size: 12px;
+      color: rgba(255,255,255,.45);
+      font-style: italic;
+      margin-top: 3px;
+    }
+    .dt-right {
+      padding: 16px 18px;
+      flex-shrink: 0;
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: var(--ink-faint);
-      transition: transform .26s var(--ease), background .18s, border-color .18s, color .18s;
+      gap: 10px;
     }
-    .ct-chevron svg { width: 12px; height: 12px; }
-    .case-trigger[aria-expanded="true"] .ct-chevron {
+    .dt-focus-pill {
+      font-size: 10.5px;
+      font-weight: 500;
+      color: rgba(255,255,255,.35);
+      white-space: nowrap;
+      max-width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @media (max-width: 520px) { .dt-focus-pill { display: none; } }
+    .dt-chevron {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.18);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.6);
+      transition: transform .28s var(--ease), border-color .2s;
+      flex-shrink: 0;
+    }
+    .dt-chevron svg { width: 13px; height: 13px; }
+    .domain-trigger[aria-expanded="true"] .dt-chevron {
       transform: rotate(180deg);
-      background: var(--lc-accent);
-      border-color: var(--lc-accent);
-      color: #fff;
+      border-color: var(--dc);
+      color: var(--dc);
     }
 
-    /* ── Level 2 collapsible detail ── */
-    .case-panel {
+    /* Panel */
+    .domain-panel {
       display: grid;
       grid-template-rows: 0fr;
-      transition: grid-template-rows .26s var(--ease);
+      transition: grid-template-rows .32s var(--ease);
     }
-    .case-panel.open { grid-template-rows: 1fr; }
-    .case-panel > .cp-inner { overflow: hidden; min-height: 0; }
+    .domain-panel.open { grid-template-rows: 1fr; }
+    .domain-panel > .dp-inner { overflow: hidden; min-height: 0; }
 
-    .cp-body {
-      padding: 0 16px 18px 62px;   /* align with text column */
-      background: var(--paper);
-      border-top: 1px solid var(--rule);
+    .dp-body {
+      background: var(--white);
+      border-top: 2px solid var(--dc);
+      padding: 24px 28px 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 32px;
     }
-    .cp-quote {
-      font-size: 13px;
-      font-weight: 500;
-      font-style: italic;
+    @media (max-width: 600px) {
+      .dp-body { grid-template-columns: 1fr; gap: 18px; padding: 18px; }
+    }
+
+    .dp-field-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--dc);
+      margin-bottom: 6px;
+    }
+    .dp-field-text {
+      font-size: 13.5px;
       color: var(--ink-mid);
-      line-height: 1.55;
-      padding: 14px 0 12px;
-      border-bottom: 1px solid var(--rule);
-      margin-bottom: 14px;
+      line-height: 1.65;
     }
-    .cp-detail {
-      font-size: 13px;
-      color: var(--ink-soft);
-      line-height: 1.75;
-      margin-bottom: 16px;
+    .dp-constructs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
     }
-    .cp-detail.placeholder {
-      font-style: italic;
-      color: var(--ink-faint);
-      background: #F0EDE8;
+    .dp-construct-tag {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink-mid);
+      background: var(--paper);
+      border: 1px solid var(--rule-dark);
+      border-radius: 2px;
+      padding: 3px 9px;
+    }
+    .dp-insurer-box {
+      background: var(--paper);
+      border-left: 3px solid var(--dc);
       padding: 12px 14px;
-      border-left: 3px solid var(--rule-dark);
+      font-size: 13px;
+      color: var(--ink-mid);
+      line-height: 1.6;
+      grid-column: 1 / -1;
     }
-    .cp-link {
+    .dp-comb-tag {
+      grid-column: 1 / -1;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 600;
-      letter-spacing: .03em;
-      color: var(--lc-accent);
-      text-decoration: none;
-      border: 1px solid currentColor;
-      border-radius: 2px;
-      padding: 6px 12px;
-      opacity: .85;
-      transition: opacity .15s, background .15s;
+      letter-spacing: .05em;
+      color: var(--dc);
+      font-style: italic;
     }
-    .cp-link:hover { opacity: 1; background: rgba(0,0,0,.03); }
-    .cp-link.disabled { opacity: .3; pointer-events: none; color: var(--ink-soft); }
-    .cp-link svg { width: 11px; height: 11px; }
 
-    /* ═══════════════════════════════════════════════════
-       LEGEND
-    ═══════════════════════════════════════════════════ */
-    .legend-wrap {
-      max-width: 680px;
-      margin: 36px auto 0;
-      padding-top: 24px;
-      border-top: 1px solid var(--rule);
+    /* ═══════════════════════════════════════════════
+       ARCHETYPES GRID
+    ═══════════════════════════════════════════════ */
+    .archetypes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 10px;
+      margin-bottom: 52px;
+    }
+    @media (max-width: 560px) { .archetypes-grid { grid-template-columns: 1fr; } }
+
+    .archetype-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .archetype-card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,.09);
+      transform: translateY(-2px);
+    }
+    .ac-header {
+      background: #111;
+      padding: 18px 20px 16px;
+      border-left: 5px solid var(--ac);
+    }
+    .ac-kicker {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ac);
+      margin-bottom: 4px;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .ac-name {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+    .ac-subtitle {
+      font-size: 11.5px;
+      color: rgba(255,255,255,.45);
+      font-style: italic;
+    }
+    .ac-body { padding: 16px 20px 18px; }
+    .ac-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .ac-field-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 3px;
+    }
+    .ac-field-text {
+      font-size: 13px;
+      color: var(--ink-mid);
+      line-height: 1.55;
+    }
+    .ac-domains {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px 32px;
+      gap: 5px;
     }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11.5px;
-      color: var(--ink-soft);
-    }
-    .legend-swatch {
-      width: 18px; height: 3px;
-      flex-shrink: 0;
+    .ac-domain-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #fff;
+      border-radius: 3px;
+      padding: 3px 8px;
     }
 
-    /* ═══════════════════════════════════════════════════
-       RESPONSIVE
-    ═══════════════════════════════════════════════════ */
-    @media (max-width: 580px) {
-      body { padding: 32px 14px 60px; }
-      .cp-body { padding-left: 14px; }
-      .domains-section, .cases-section { padding-left: 16px; padding-right: 16px; }
-      .lt-num { font-size: 32px; padding: 16px 14px 16px 18px; }
+    /* ═══════════════════════════════════════════════
+       REFERENCES
+    ═══════════════════════════════════════════════ */
+    .references-section {
+      padding: 40px 0;
+      border-top: 1px solid var(--rule);
+      margin-top: 8px;
     }
+    .ref-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 14px;
+    }
+    .ref-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .ref-item {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+    .ref-item strong { color: var(--ink-mid); font-weight: 600; }
+
+    /* ═══════════════════════════════════════════════
+       CTA FOOTER
+    ═══════════════════════════════════════════════ */
+    .page-cta {
+      background: #111;
+      margin-top: 48px;
+    }
+    .page-cta-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 36px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .page-cta-text {
+      font-size: 13px;
+      color: rgba(255,255,255,.5);
+      line-height: 1.5;
+    }
+    .page-cta-text strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .page-cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      color: #fff;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 3px;
+      padding: 10px 18px;
+      white-space: nowrap;
+      transition: background .15s, border-color .15s;
+      flex-shrink: 0;
+    }
+    .page-cta-link:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.4); }
+    .page-cta-link svg { width: 14px; height: 14px; }
   </style>
 </head>
 <body>
 
-<header class="page-header">
-  <p class="eyebrow">
-    <span class="eyebrow-line"></span>
-    Nippon Life &nbsp;·&nbsp; Behavior Change Science
-    <span class="eyebrow-line"></span>
-  </p>
-  <h1>3-Layer Behavior Change Mechanisms</h1>
-  <p>Six action domains mapped across three layers of intervention — from removing barriers to embedding lasting habits. Open each layer to explore the mechanisms, then expand any program to read its case study.</p>
-  <div class="header-rule"></div>
-</header>
+<!-- ── NAV ── -->
+<nav class="site-nav">
+  <span class="nav-brand">Nippon Life &middot; Behavior Change</span>
+  <div class="nav-links">
+    <a href="index.html" class="active">Taxonomy</a>
+    <a href="three-layers.html">3-Layer Model &amp; Cases</a>
+  </div>
+</nav>
 
-<div class="controls">
-  <button class="btn-ghost" id="btn-expand-all">Expand all</button>
-  <button class="btn-ghost" id="btn-collapse-all">Collapse all</button>
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow"><span class="eyebrow-line"></span>Strategic Taxonomy &nbsp;·&nbsp; Design Dictionary<span class="eyebrow-line"></span></div>
+    <h1>Behavior Change in Healthcare</h1>
+    <p class="hero-sub">Strategic Taxonomy for Insurer-Led Programs</p>
+    <div class="focus-tags">
+      <span class="focus-tag">Healthy Aging</span>
+      <span class="focus-tag">Chronic Disease Management</span>
+      <span class="focus-tag">Pre-Disease Risk</span>
+    </div>
+    <div class="exec-summary">
+      <p>This taxonomy guides Nippon Life's investment, partnership, and product strategies for behavior change. It bridges the gap between <strong>academic rigor</strong> (Behavioral Economics, Implementation Science) and <strong>insurer levers</strong> (Product Design, Contracting, Member Engagement).</p>
+      <br>
+      <p>Designed as a <strong>"Design Dictionary"</strong> for cross-functional teams, the framework has two layers: the <strong>6 Action Domains</strong> — the functional ingredients required to change behavior — and the <strong>6 Implementation Archetypes</strong> — market packages that combine those domains into concrete products and services.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── BRIDGE ── -->
+<section class="bridge-section">
+  <div class="container">
+    <div class="bridge-grid">
+      <div class="bridge-side">
+        <div class="bridge-side-label">Academic Rigor</div>
+        <div class="bridge-side-sub">Behavioral Economics<br>Implementation Science</div>
+      </div>
+      <div class="bridge-arrow">
+        <div class="bridge-arrow-line"></div>
+      </div>
+      <div class="bridge-center">
+        <div class="bridge-center-label">Strategic Taxonomy</div>
+        <div class="bridge-center-sub">Design Dictionary</div>
+      </div>
+      <div class="bridge-arrow" style="transform:scaleX(-1)">
+        <div class="bridge-arrow-line"></div>
+      </div>
+      <div class="bridge-side">
+        <div class="bridge-side-label">Insurer Levers</div>
+        <div class="bridge-side-sub">Product Design<br>Contracting &amp; Engagement</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LAYER 1: DOMAINS ── -->
+<section class="section-block">
+  <div class="container">
+    <div class="section-kicker">
+      <span class="section-kicker-num">1</span> Layer 1 &nbsp;·&nbsp; The Mechanisms
+    </div>
+    <h2 class="section-title">The 6 Action Domains</h2>
+    <p class="section-desc">The functional ingredients required to change behavior — mapped to COM-B and the 3-Layer Model.</p>
+    <div class="domains-list" id="domains-list"></div>
+  </div>
+</section>
+
+<!-- ── LAYER 2: ARCHETYPES ── -->
+<section class="section-block">
+  <div class="container">
+    <div class="section-kicker">
+      <span class="section-kicker-num">2</span> Layer 2 &nbsp;·&nbsp; The Models
+    </div>
+    <h2 class="section-title">The 6 Implementation Archetypes</h2>
+    <p class="section-desc">Market packages that combine action domains into concrete products, services, and insurer roles.</p>
+    <div class="archetypes-grid" id="archetypes-grid"></div>
+  </div>
+</section>
+
+<!-- ── REFERENCES ── -->
+<div class="container">
+  <div class="references-section">
+    <div class="ref-title">Selected References &amp; Frameworks</div>
+    <div class="ref-list">
+      <div class="ref-item"><strong>Theory:</strong> COM-B (Michie et al.), Self-Determination Theory (Ryan &amp; Deci)</div>
+      <div class="ref-item"><strong>Implementation:</strong> RE-AIM (Glasgow et al.), CFIR (Damschroder et al.)</div>
+      <div class="ref-item"><strong>Economics:</strong> Nudge/Sludge (Thaler, Sunstein), VBID (Chernew, Fendrick)</div>
+    </div>
+  </div>
 </div>
 
-<div class="accordion-stack" id="accordion-stack"></div>
-
-<div class="legend-wrap" id="legend"></div>
+<!-- ── FOOTER CTA ── -->
+<div class="page-cta">
+  <div class="page-cta-inner">
+    <div class="page-cta-text">
+      <strong>3-Layer Model &amp; Case Studies</strong>
+      See how these domains map to the Access, Support, and Sustain layers — with real-world program examples from NHS, Omada, Vitality, Apple, and more.
+    </div>
+    <a href="three-layers.html" class="page-cta-link">
+      Explore Case Studies
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+  </div>
+</div>
 
 <script>
-/* ═══════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════
    DATA
-═══════════════════════════════════════════════════════════ */
-const LAYERS = [
+═══════════════════════════════════════════════════════ */
+const DOMAINS = [
   {
-    id: 'access', order: '01',
-    title: 'Access Layer',
-    question: 'Can they act?',
-    tagline: 'Designing the path of least resistance.',
-    accent: '#2B8CB3',
-    domains: [
-      {
-        id: 'd1', number: 1,
-        name: 'Pathway, Environment & Access',
-        caption: 'Remove friction; make healthy action feasible and default.',
-        icon: 'pathway', comB: 'COM-B: Opportunity (Physical)'
-      }
-    ],
-    cases: [
-      {
-        id: 'nhs', company: 'NHS', program: 'Bowel Screening – Opt-Out Invitations',
-        initials: 'NHS', bgColor: '#003087',
-        label: 'Auto-sent at-home kits remove friction and dramatically raise colorectal cancer screening rates.',
-        detail: 'The NHS Bowel Cancer Screening Programme sends self-sampling kits directly to eligible adults every two years, defaulting participation to opt-out rather than opt-in. This simple environmental redesign — removing the need to schedule, travel, or take initiative — has significantly increased uptake among populations who would not otherwise engage. The program demonstrates how access interventions reduce health inequalities by equalising the effort required across demographic groups.',
-        link: '[Insert NHS Bowel Screening URL]', isPlaceholder: false
-      },
-      {
-        id: 'kaiser', company: 'Kaiser Permanente', program: 'Centralized Appointment Booking',
-        initials: 'KP', bgColor: '#00558C',
-        label: 'Integrated scheduling and reminders reduce missed visits and simplify navigation for chronic patients.',
-        detail: 'Kaiser Permanente\'s My Health Manager portal allows members to book, reschedule, and receive reminders for all appointments across specialties in one place. For chronic disease patients juggling multiple providers, this consolidated access point dramatically reduces administrative burden. Automated reminders and easy rescheduling further reduce no-shows, ensuring patients remain engaged with their care pathways.',
-        link: '[Insert Kaiser Permanente URL]', isPlaceholder: false
-      },
-      {
-        id: 'vitality-a', company: 'Vitality', program: 'Seamless Device Integration',
-        initials: 'Vi', bgColor: '#B8001A',
-        label: 'Automatic syncing from wearables to app eliminates manual logging and lowers barriers to participation.',
-        detail: 'Vitality\'s platform integrates with over 100 devices and apps — including Apple Watch, Fitbit, and Garmin — to automatically log physical activity, gym visits, and health checks without manual input. By eliminating the friction of data entry, members receive credit for behaviors they are already performing. This access-first design has been linked to higher long-term engagement rates across Vitality\'s global member base.',
-        link: '[Insert Vitality case study URL]', isPlaceholder: false
-      },
-      {
-        id: 'nippon-a', company: 'Nippon Life', program: '[Insert Name] Digital Onboarding Flow',
-        initials: 'NL', bgColor: '#8B001A',
-        label: 'Streamlined enrollment with defaults directs eligible members into risk-management programs early.',
-        detail: '[Insert 150-word summary of Nippon Life\'s digital onboarding initiative, outcomes achieved, and relevance to the Access Layer behavior change approach.]',
-        link: '[Insert Nippon Life case study URL]', isPlaceholder: true
-      },
-      {
-        id: 'nyc', company: 'City of New York', program: 'Active Design Guidelines',
-        initials: 'NYC', bgColor: '#1D62A7',
-        label: 'Stair prompts and neighborhood layout nudge daily physical activity by redesigning environments.',
-        detail: 'New York City\'s Active Design Guidelines provide architects and urban planners with evidence-based strategies for embedding physical activity into building and neighbourhood design. Visible, accessible staircases, mixed-use zoning, and safe pedestrian infrastructure reduce reliance on deliberate exercise by making movement the default. Post-implementation studies showed measurable increases in stair use and walking in buildings where guidelines were applied.',
-        link: '[Insert NYC Active Design URL]', isPlaceholder: false
-      }
-    ]
+    id: 'd1', number: 1,
+    name: 'Pathway, Environment & Access Design',
+    subtitle: 'Designing the "Path of Least Resistance"',
+    layerTag: 'Access Layer', color: '#2B8CB3',
+    primaryFocus: 'Remove Friction: Make action feasible and complete.',
+    concept: 'People often fail not because they don\'t want to act, but because the process is hard. "Sludge" (friction) reduces uptake.',
+    constructs: ['Choice Architecture', 'Defaults', 'Active Choice', 'Friction Costs', 'Closed-loop Workflows'],
+    insurerActions: 'Journey simplification, "closed-loop" navigation, default settings (opt-out), eliminating "sludge."',
+    insurerApplication: 'Eliminate steps in evidence submission; use opt-out enrollment for disease management programs; simplify appointment booking.',
+    comB: 'COM-B: Opportunity (Physical)'
   },
   {
-    id: 'support', order: '02',
-    title: 'Support Layer',
-    question: 'Will they act?',
-    tagline: 'Skills, motivation, and social/economic support.',
-    accent: '#2A9E72',
-    domains: [
-      { id: 'd2', number: 2, name: 'Capability Building & Coaching',  caption: 'Build skills and confidence for self-management.',       icon: 'coaching',  comB: 'COM-B: Capability (Psychological)' },
-      { id: 'd5', number: 5, name: 'Social Context & Community',       caption: 'Leverage peers, family, and community support.',         icon: 'social',    comB: 'COM-B: Opportunity (Social)' },
-      { id: 'd4', number: 4, name: 'Economic Levers & Incentives',     caption: 'Align benefits and prices with healthy choices.',        icon: 'economic',  comB: 'COM-B: Motivation (Reflective)' }
-    ],
-    cases: [
-      {
-        id: 'omada', company: 'Omada Health', program: 'Digital Diabetes Prevention',
-        initials: 'Om', bgColor: '#6B3FA0',
-        label: 'Hybrid coaching, group support, and structured curriculum build skills for sustainable weight and glucose control.',
-        detail: 'Omada Health delivers a CDC-recognized Diabetes Prevention Program digitally, combining weekly interactive lessons, daily check-ins, and small peer groups facilitated by trained health coaches. Participants receive a connected scale and coach support to interpret data. Clinical outcomes across published studies show an average 4–5% body weight reduction sustained at 12 months, with significant improvements in blood glucose and cardiovascular risk markers.',
-        link: '[Insert Omada Health case study URL]', isPlaceholder: false
-      },
-      {
-        id: 'livongo', company: 'Livongo / Teladoc', program: 'Connected Diabetes Coaching',
-        initials: 'Li', bgColor: '#0078C8',
-        label: 'Real-time data plus human coaches help members interpret readings and adjust daily behaviors.',
-        detail: 'Livongo (now part of Teladoc) provides cellular-connected glucose meters that transmit readings to a platform combining AI insights with on-demand human coach support. Members receive personalised in-the-moment guidance, reducing hypoglycaemic episodes and improving A1c levels. A 2020 peer-reviewed study showed members experienced fewer high and low glucose events, and employer clients reported significant reductions in diabetes-related healthcare spend.',
-        link: '[Insert Livongo / Teladoc case study URL]', isPlaceholder: false
-      },
-      {
-        id: 'vitality-s', company: 'Vitality', program: 'Activity-Linked Premium Incentives',
-        initials: 'Vi', bgColor: '#B8001A',
-        label: 'Rewards and premium discounts tied to steps and check-ups strengthen motivation to stay active.',
-        detail: 'Vitality\'s shared-value model ties insurance premiums and rewards directly to verified healthy behaviors — gym visits, steps, health screenings, and preventive appointments. Members who engage earn Vitality Points redeemable for partner discounts and premium reductions. Academic analysis shows engaged members have 10–20% lower mortality and claims costs, demonstrating the power of economic alignment with healthy choices.',
-        link: '[Insert Vitality case study URL]', isPlaceholder: false
-      },
-      {
-        id: 'noom', company: 'Noom', program: 'Group-Based Weight Management',
-        initials: 'No', bgColor: '#E07818',
-        label: 'Small peer groups and messaging create accountability and normalize small daily changes.',
-        detail: 'Noom combines cognitive-behavioral techniques, psychology-based curriculum, and small peer groups facilitated by trained coaches. Members are placed in groups of 10–15 to share daily logs and encourage each other via app-based chat. The social accountability component has been shown to significantly improve 6-month retention compared to self-directed apps, and Noom reports clinically meaningful weight outcomes at the population level.',
-        link: '[Insert Noom case study URL]', isPlaceholder: false
-      },
-      {
-        id: 'employer', company: 'Employer Wellness Program', program: 'Family Participation Benefit',
-        initials: 'EW', bgColor: '#3D5A80',
-        label: 'Subsidized family gym access and shared goals harness household support for healthier routines.',
-        detail: 'A growing number of large employers have extended gym subsidies and wellness program access to employee family members, recognising that household social context is a powerful determinant of individual health behaviour. Shared challenges, family step competitions, and caregiver-inclusive programming leverage the social support network, increasing both enrolment and sustained engagement beyond the workplace.',
-        link: '[Insert Employer Wellness case study URL]', isPlaceholder: false
-      }
-    ]
+    id: 'd2', number: 2,
+    name: 'Capability Building & Coaching',
+    subtitle: 'Closing the "Know-Do" Gap',
+    layerTag: 'Support Layer', color: '#2A9E72',
+    primaryFocus: 'Build Skills: Enable self-management.',
+    concept: 'Chronic care requires skills (monitoring, planning), not just willpower.',
+    constructs: ['Self-Efficacy', 'Goal Setting', 'Action Planning', 'Motivational Interviewing (MI)', 'CBT'],
+    insurerActions: 'Vendor selection (digital/hybrid), referral triggers, tiered support models.',
+    insurerApplication: 'Select vendors that use evidence-based coaching (not just "cheerleading"); integrate digital therapeutics (DTx) into coverage.',
+    comB: 'COM-B: Capability (Psychological)'
   },
   {
-    id: 'sustain', order: '03',
-    title: 'Sustain Layer',
-    question: 'Will they keep going?',
-    tagline: 'Making healthy behavior stick over time.',
-    accent: '#D97B35',
-    domains: [
-      { id: 'd3', number: 3, name: 'Habits & Maintenance',       caption: 'Design routines and recovery from lapses.',   icon: 'habits',    comB: 'COM-B: Motivation (Automatic)' },
-      { id: 'd6', number: 6, name: 'Attention & Decision Support', caption: 'Clarify choices and send timely prompts.', icon: 'attention', comB: 'COM-B: Capability (Psychological)' }
-    ],
-    cases: [
-      {
-        id: 'apple', company: 'Apple Fitness+', program: 'Streaks and Milestones',
-        initials: 'AF+', bgColor: '#1C1C1E',
-        label: 'Daily streaks, badges, and new content keep users returning and embedding exercise as routine.',
-        detail: 'Apple Fitness+ combines the Apple Watch\'s Activity Rings system with streaks, badges, and shared milestones to reinforce daily exercise habits. The integration of time-sensitive streak notifications, personalised milestone celebrations, and social sharing leverages variable reward and identity-based habit formation. Research on wearable-linked gamification consistently shows improvements in 30- and 60-day retention versus non-streak app designs.',
-        link: '[Insert Apple Fitness+ case study URL]', isPlaceholder: false
-      },
-      {
-        id: 'medapp', company: 'Medication Adherence App', program: 'JIT Reminders',
-        initials: 'Rx', bgColor: '#2C6FAE',
-        label: 'Context-aware pill reminders and simple yes/no logging support long-term adherence.',
-        detail: 'Just-in-time (JIT) medication reminder apps (e.g., Medisafe) use time- and context-aware push notifications to prompt medication-taking at the right moment. Simple one-tap confirmation reduces friction in logging, and dashboards provide patients and care teams with adherence trends over time. Studies show JIT reminder apps improve adherence rates by 15–20% versus unassisted self-management in chronic conditions like hypertension and diabetes.',
-        link: '[Insert Medication Adherence App case study URL]', isPlaceholder: false
-      },
-      {
-        id: 'quitline', company: 'Quitline Program', program: 'Relapse Support',
-        initials: 'QL', bgColor: '#2E8B6A',
-        label: 'Non-judgmental re-entry and "fresh start" framing bring smokers back after slips instead of losing them.',
-        detail: 'National Quitline programs that incorporate relapse-support protocols — proactive outreach after missed check-ins, normalisation of slips, and "fresh start" re-enrolment pathways — retain significantly more quitters long-term. By reducing shame and removing barriers to re-engagement, these programs maintain a pipeline of participants working toward abstinence even after lapses, improving 12-month quit rates.',
-        link: '[Insert Quitline case study URL]', isPlaceholder: false
-      },
-      {
-        id: 'jitai', company: 'Precision Engagement Platform', program: 'JITAI',
-        initials: 'JT', bgColor: '#6B40D0',
-        label: 'Data-driven triggers send nudges only at high-risk moments, reducing fatigue and improving impact.',
-        detail: 'Just-in-Time Adaptive Interventions (JITAIs) use real-time sensor and behavioral data to deliver support precisely when an individual is most vulnerable or receptive — rather than on a fixed schedule. Academic implementations in smoking cessation, physical activity, and alcohol reduction demonstrate that adaptive, contextually-timed nudges outperform fixed-schedule messaging on both engagement and clinical outcomes, while reducing notification fatigue.',
-        link: '[Insert JITAI Platform case study URL]', isPlaceholder: false
-      },
-      {
-        id: 'nippon-su', company: 'Nippon Life', program: '[Insert Future Healthspan Lab Pilot]',
-        initials: 'NL', bgColor: '#8B001A',
-        label: 'Longitudinal coaching plus periodic check-ins sustain behavior change beyond initial campaigns.',
-        detail: '[Insert 150-word summary of Nippon Life\'s Healthspan Lab pilot initiative, planned outcomes, and relevance to the Sustain Layer behavior change approach.]',
-        link: '[Insert Nippon Life Healthspan Lab URL]', isPlaceholder: true
-      }
-    ]
+    id: 'd3', number: 3,
+    name: 'Self-Regulation, Habits & Maintenance',
+    subtitle: 'Solving for the "Decay Curve"',
+    layerTag: 'Sustain Layer', color: '#D97B35',
+    primaryFocus: 'Sustain: Design for durability and relapse.',
+    concept: 'Initial motivation fades. Durability comes from habits and recovery from lapses.',
+    constructs: ['Implementation Intentions ("If-Then" plans)', 'Habit Loops (Cue-Routine-Reward)', 'Relapse Prevention', 'Fresh Start Effect'],
+    insurerActions: 'Re-engagement flows, habit scaffolding, "fresh start" cues, long-term monitoring.',
+    insurerApplication: 'Move beyond 12-week challenges to 12-month maintenance structures; design non-punitive re-entry paths for members who lapse.',
+    comB: 'COM-B: Motivation (Automatic)'
+  },
+  {
+    id: 'd4', number: 4,
+    name: 'Incentives, Reinforcement & Economic Levers',
+    subtitle: 'Aligning Value and Price',
+    layerTag: 'Support Layer', color: '#2A9E72',
+    primaryFocus: 'Reinforce: Align motivation via benefits/price.',
+    concept: 'Economic levers can initiate behavior, but design matters — loss aversion is stronger than gain.',
+    constructs: ['Loss Aversion', 'Present Bias', 'VBID', 'Pay-for-Performance (P4P)', 'Regret Lotteries'],
+    insurerActions: 'VBID (Value-Based Insurance Design), smart incentives (loss-framed/lotteries), outcomes-based contracting.',
+    insurerApplication: 'Waive copays for high-value medications (VBID); use "loss-framed" incentives for adherence; align provider contracts with patient behavioral outcomes.',
+    comB: 'COM-B: Motivation (Reflective)'
+  },
+  {
+    id: 'd5', number: 5,
+    name: 'Social Support, Norms & Community',
+    subtitle: 'Leveraging the Network',
+    layerTag: 'Support Layer', color: '#2A9E72',
+    primaryFocus: 'Connect: Leverage social capital.',
+    concept: 'Health behaviors are contagious. Isolation is a risk factor for aging.',
+    constructs: ['Social Norms (Descriptive vs. Injunctive)', 'Social Proof', 'Caregiver Support', 'Instrumental Support'],
+    insurerActions: 'Peer support systems, caregiver integration, community linkages, normative messaging.',
+    insurerApplication: 'Involve family members in care plans (with consent); facilitate peer groups for specific conditions (e.g., diabetes); normalize help-seeking.',
+    comB: 'COM-B: Opportunity (Social)'
+  },
+  {
+    id: 'd6', number: 6,
+    name: 'Communication, Attention & Decision Support',
+    subtitle: 'Respecting Limited Bandwidth',
+    layerTag: 'Sustain Layer', color: '#D97B35',
+    primaryFocus: 'Clarify: Reduce cognitive load.',
+    concept: 'Attention is a scarce resource. Information overload leads to inaction.',
+    constructs: ['Cognitive Load', 'Decision Fatigue', 'Plain Language', 'Icon Arrays (Risk Visualization)', 'Shared Decision Making'],
+    insurerActions: 'Plain language, risk visualization, decision aids, "just-in-time" notifications.',
+    insurerApplication: 'Simplify benefit explanations; use "teach-back" methods in call centers; ensure risk communications (e.g., screening results) are actionable and clear.',
+    comB: 'COM-B: Capability (Psychological)'
   }
 ];
 
-/* ═══════════════════════════════════════════════════════════
+const ARCHETYPES = [
+  {
+    id: 'architect', number: 1,
+    name: 'The Architect',
+    subtitle: 'Choice Architecture & Pathway Design',
+    color: '#2B8CB3',
+    coreDomains: [1, 3],
+    insurerRole: 'Orchestrator of the care journey',
+    focus: 'Changing the "path of least resistance" so the healthy choice is easy.'
+  },
+  {
+    id: 'coach', number: 2,
+    name: 'The Coach',
+    subtitle: 'Skills & Hybrid Care',
+    color: '#2A9E72',
+    coreDomains: [2],
+    insurerRole: 'Payer/Partner for clinical coaching vendors',
+    focus: 'Closing the skill gap for chronic disease self-management.'
+  },
+  {
+    id: 'economist', number: 3,
+    name: 'The Economist',
+    subtitle: 'Contingent Incentives & Benefits',
+    color: '#2A9E72',
+    coreDomains: [4],
+    insurerRole: 'Product Designer (VBID, Rewards)',
+    focus: 'Using financial/material levers to jumpstart behavior.'
+  },
+  {
+    id: 'connector', number: 4,
+    name: 'The Connector',
+    subtitle: 'Social Capital & Peer Systems',
+    color: '#2A9E72',
+    coreDomains: [5],
+    insurerRole: 'Community builder or connector to local resources',
+    focus: 'Addressing isolation and leveraging peer accountability — critical for aging.'
+  },
+  {
+    id: 'navigator', number: 5,
+    name: 'The Navigator',
+    subtitle: 'Clinical Pathway Scaffolding',
+    color: '#2B8CB3',
+    coreDomains: [1, 6],
+    insurerRole: 'Guide/Concierge',
+    focus: 'Ensuring adherence to complex clinical protocols through logistics support.'
+  },
+  {
+    id: 'analyst', number: 6,
+    name: 'The Analyst',
+    subtitle: 'Precision Engagement / JITAI',
+    color: '#D97B35',
+    coreDomains: [6],
+    domainNote: '+ Data-driven timing',
+    insurerRole: 'Data Platform & Messenger',
+    focus: 'Delivering the right nudge at the right time (Just-In-Time Adaptive Interventions).'
+  }
+];
+
+/* Domain colour lookup */
+const DOMAIN_COLOR = {};
+DOMAINS.forEach(d => { DOMAIN_COLOR[d.number] = d.color; });
+
+/* ═══════════════════════════════════════════════════════
    ICONS
-═══════════════════════════════════════════════════════════ */
-const ICONS = {
-  pathway:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/><circle cx="5" cy="12" r="2" fill="currentColor" stroke="none"/></svg>`,
-  coaching: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
-  social:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 20a6 6 0 0 1 12 0"/><path d="M14 20a6 6 0 0 1 8.6-5.4"/></svg>`,
-  economic: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
-  habits:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/><path d="M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>`,
-  attention:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>`
-};
-
+═══════════════════════════════════════════════════════ */
 const CHEVRON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>`;
-const LINK_IC = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
 
-/* ═══════════════════════════════════════════════════════════
-   BUILD
-═══════════════════════════════════════════════════════════ */
-function buildAccordion() {
-  const stack = document.getElementById('accordion-stack');
+/* ═══════════════════════════════════════════════════════
+   RENDER DOMAINS
+═══════════════════════════════════════════════════════ */
+function renderDomains() {
+  const list = document.getElementById('domains-list');
+  DOMAINS.forEach(d => {
+    const item = document.createElement('div');
+    item.className = 'domain-item';
+    item.style.setProperty('--dc', d.color);
 
-  LAYERS.forEach(layer => {
-    /* Layer wrapper */
-    const acc = document.createElement('div');
-    acc.className = 'layer-accordion';
-    acc.dataset.layerId = layer.id;
-    acc.style.cssText = `--lc-accent:${layer.accent}`;
-
-    /* ── Level 1 trigger ── */
     const trigger = document.createElement('button');
-    trigger.className = 'layer-trigger';
+    trigger.className = 'domain-trigger';
     trigger.setAttribute('aria-expanded', 'false');
-    trigger.setAttribute('aria-controls', `panel-${layer.id}`);
+    trigger.setAttribute('aria-controls', `dp-${d.id}`);
     trigger.innerHTML = `
-      <div class="lt-strip"></div>
-      <div class="lt-num">${layer.order}</div>
-      <div class="lt-text">
-        <div class="lt-badge">
-          <span class="lt-badge-dot"></span>${layer.title}
-        </div>
-        <div class="lt-question">${layer.question}</div>
-        <div class="lt-tagline">${layer.tagline}</div>
+      <div class="dt-strip"></div>
+      <div class="dt-num">${String(d.number).padStart(2,'0')}</div>
+      <div class="dt-text">
+        <div class="dt-layer-tag"><span class="dt-layer-dot"></span>${d.layerTag}</div>
+        <div class="dt-name">${d.name}</div>
+        <div class="dt-subtitle">${d.subtitle}</div>
       </div>
-      <div class="lt-right">
-        <span class="lt-pill">${layer.domains.length} domain${layer.domains.length > 1 ? 's' : ''} · ${layer.cases.length} programs</span>
-        <div class="lt-chevron">${CHEVRON}</div>
+      <div class="dt-right">
+        <span class="dt-focus-pill">${d.primaryFocus}</span>
+        <div class="dt-chevron">${CHEVRON}</div>
       </div>`;
 
-    /* ── Level 1 panel ── */
     const panel = document.createElement('div');
-    panel.className = 'layer-panel';
-    panel.id = `panel-${layer.id}`;
-    const lpInner = document.createElement('div');
-    lpInner.className = 'lp-inner';
-    const lpBody = document.createElement('div');
-    lpBody.className = 'lp-body';
+    panel.className = 'domain-panel';
+    panel.id = `dp-${d.id}`;
 
-    /* Domains */
-    const domainsSection = document.createElement('div');
-    domainsSection.className = 'domains-section';
-    domainsSection.innerHTML = `
-      <div class="section-eyebrow">Action Domains</div>
-      <div class="domains-row">
-        ${layer.domains.map(d => `
-          <div class="domain-chip">
-            <div class="dc-icon">${ICONS[d.icon]}</div>
-            <div class="dc-info">
-              <div class="dc-num">Domain ${d.number}</div>
-              <div class="dc-name">${d.name}</div>
-              <div class="dc-caption">${d.caption}</div>
-              <div class="dc-comb">${d.comB}</div>
-            </div>
-          </div>`).join('')}
-      </div>`;
+    const inner = document.createElement('div');
+    inner.className = 'dp-inner';
 
-    /* Cases */
-    const casesSection = document.createElement('div');
-    casesSection.className = 'cases-section';
-    casesSection.innerHTML = `<div class="section-eyebrow">Case Studies &amp; Programs</div>`;
-    const casesList = document.createElement('div');
-    casesList.className = 'cases-list';
-
-    layer.cases.forEach(cs => {
-      const caseAcc = document.createElement('div');
-      caseAcc.className = 'case-accordion' + (cs.isPlaceholder ? ' placeholder-case' : '');
-      caseAcc.dataset.caseId = cs.id;
-
-      const caseTrigger = document.createElement('button');
-      caseTrigger.className = 'case-trigger';
-      caseTrigger.setAttribute('aria-expanded', 'false');
-      caseTrigger.setAttribute('aria-controls', `cp-${cs.id}`);
-      caseTrigger.innerHTML = `
-        <div class="ct-logo" style="background:${cs.bgColor}">${cs.initials}</div>
-        <div class="ct-body">
-          <div class="ct-company">${cs.company}</div>
-          <div class="ct-program">${cs.program}</div>
-          <div class="ct-label">${cs.label}</div>
+    const body = document.createElement('div');
+    body.className = 'dp-body';
+    body.style.setProperty('--dc', d.color);
+    body.innerHTML = `
+      <div>
+        <div class="dp-field-label">Concept</div>
+        <div class="dp-field-text">${d.concept}</div>
+      </div>
+      <div>
+        <div class="dp-field-label">Key Constructs</div>
+        <div class="dp-constructs">
+          ${d.constructs.map(c => `<span class="dp-construct-tag">${c}</span>`).join('')}
         </div>
-        <div class="ct-chevron">${CHEVRON}</div>`;
+      </div>
+      <div class="dp-insurer-box">
+        <div class="dp-field-label" style="margin-bottom:5px">High-Leverage Insurer Actions</div>
+        ${d.insurerActions}
+      </div>
+      <div class="dp-insurer-box" style="border-left-color:var(--rule-dark);background:var(--white)">
+        <div class="dp-field-label" style="margin-bottom:5px;color:var(--ink-faint)">Insurer Application</div>
+        ${d.insurerApplication}
+      </div>
+      <div class="dp-comb-tag">${d.comB}</div>`;
 
-      const casePanel = document.createElement('div');
-      casePanel.className = 'case-panel';
-      casePanel.id = `cp-${cs.id}`;
-      const cpInner = document.createElement('div');
-      cpInner.className = 'cp-inner';
-      const cpBody = document.createElement('div');
-      cpBody.className = 'cp-body';
-
-      const isPlaceholderLink = cs.isPlaceholder || cs.link.startsWith('[');
-      cpBody.innerHTML = `
-        <div class="cp-quote">"${cs.label}"</div>
-        <div class="cp-detail${cs.isPlaceholder ? ' placeholder' : ''}">${cs.detail}</div>
-        <a class="cp-link${isPlaceholderLink ? ' disabled' : ''}"
-           href="${isPlaceholderLink ? '#' : cs.link}"
-           target="${isPlaceholderLink ? '' : '_blank'}"
-           rel="noopener">
-          ${LINK_IC} ${isPlaceholderLink ? cs.link : 'View case study reference'}
-        </a>`;
-
-      cpInner.appendChild(cpBody);
-      casePanel.appendChild(cpInner);
-      caseAcc.appendChild(caseTrigger);
-      caseAcc.appendChild(casePanel);
-      casesList.appendChild(caseAcc);
-    });
-
-    casesSection.appendChild(casesList);
-    lpBody.appendChild(domainsSection);
-    lpBody.appendChild(casesSection);
-    lpInner.appendChild(lpBody);
-    panel.appendChild(lpInner);
-    acc.appendChild(trigger);
-    acc.appendChild(panel);
-    stack.appendChild(acc);
-  });
-
-  /* Legend */
-  document.getElementById('legend').innerHTML = LAYERS.map(l => `
-    <div class="legend-item">
-      <span class="legend-swatch" style="background:${l.accent}"></span>
-      <span><strong>${l.title}</strong> — ${l.tagline}</span>
-    </div>`).join('');
-}
-
-/* ═══════════════════════════════════════════════════════════
-   TOGGLE
-═══════════════════════════════════════════════════════════ */
-function openLayer(t, p) {
-  t.setAttribute('aria-expanded', 'true');
-  p.classList.add('open');
-}
-function closeLayer(t, p) {
-  t.setAttribute('aria-expanded', 'false');
-  p.classList.remove('open');
-  p.querySelectorAll('.case-trigger[aria-expanded="true"]').forEach(ct => {
-    closeCase(ct, document.getElementById(ct.getAttribute('aria-controls')));
+    inner.appendChild(body);
+    panel.appendChild(inner);
+    item.appendChild(trigger);
+    item.appendChild(panel);
+    list.appendChild(item);
   });
 }
-function openCase(t, p) {
-  t.setAttribute('aria-expanded', 'true');
-  p.classList.add('open');
-  t.closest('.case-accordion')?.classList.add('case-open');
-}
-function closeCase(t, p) {
-  t.setAttribute('aria-expanded', 'false');
-  p.classList.remove('open');
-  t.closest('.case-accordion')?.classList.remove('case-open');
+
+/* ═══════════════════════════════════════════════════════
+   RENDER ARCHETYPES
+═══════════════════════════════════════════════════════ */
+function renderArchetypes() {
+  const grid = document.getElementById('archetypes-grid');
+  ARCHETYPES.forEach(a => {
+    const card = document.createElement('div');
+    card.className = 'archetype-card';
+    card.style.setProperty('--ac', a.color);
+
+    const domainBadges = a.coreDomains.map(n => `
+      <span class="ac-domain-badge" style="background:${DOMAIN_COLOR[n]}">D${n}</span>
+    `).join('') + (a.domainNote ? `<span style="font-size:11px;color:var(--ink-faint);align-self:center;margin-left:2px">${a.domainNote}</span>` : '');
+
+    card.innerHTML = `
+      <div class="ac-header">
+        <div class="ac-kicker">
+          <span style="width:5px;height:5px;border-radius:50%;background:var(--ac);display:inline-block"></span>
+          Archetype ${a.number}
+        </div>
+        <div class="ac-name">${a.name}</div>
+        <div class="ac-subtitle">${a.subtitle}</div>
+      </div>
+      <div class="ac-body">
+        <div class="ac-row">
+          <div>
+            <div class="ac-field-label">Core Mechanisms</div>
+            <div class="ac-domains">${domainBadges}</div>
+          </div>
+          <div>
+            <div class="ac-field-label">Insurer Role</div>
+            <div class="ac-field-text">${a.insurerRole}</div>
+          </div>
+          <div>
+            <div class="ac-field-label">Focus</div>
+            <div class="ac-field-text">${a.focus}</div>
+          </div>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
 }
 
-/* ═══════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════
    EVENTS
-═══════════════════════════════════════════════════════════ */
+═══════════════════════════════════════════════════════ */
 function attachEvents() {
-  const stack = document.getElementById('accordion-stack');
-
-  /* Layer triggers */
-  stack.querySelectorAll('.layer-trigger').forEach(t => {
-    const p = document.getElementById(t.getAttribute('aria-controls'));
+  document.getElementById('domains-list').querySelectorAll('.domain-trigger').forEach(t => {
+    const panel = document.getElementById(t.getAttribute('aria-controls'));
     t.addEventListener('click', () => {
-      t.getAttribute('aria-expanded') === 'true' ? closeLayer(t, p) : openLayer(t, p);
+      const open = t.getAttribute('aria-expanded') === 'true';
+      t.setAttribute('aria-expanded', String(!open));
+      panel.classList.toggle('open', !open);
     });
-  });
-
-  /* Case triggers — delegated, prevent bubbling to layer */
-  stack.addEventListener('click', e => {
-    const ct = e.target.closest('.case-trigger');
-    if (!ct) return;
-    e.stopPropagation();
-    const p = document.getElementById(ct.getAttribute('aria-controls'));
-    ct.getAttribute('aria-expanded') === 'true' ? closeCase(ct, p) : openCase(ct, p);
-  });
-
-  /* Keyboard on layer triggers */
-  const layerTriggers = [...stack.querySelectorAll('.layer-trigger')];
-  layerTriggers.forEach((t, i) => {
     t.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); t.click(); }
-      if (e.key === 'ArrowDown') { e.preventDefault(); (layerTriggers[i + 1] ?? layerTriggers[0]).focus(); }
-      if (e.key === 'ArrowUp')   { e.preventDefault(); (layerTriggers[i - 1] ?? layerTriggers[layerTriggers.length - 1]).focus(); }
-    });
-  });
-
-  /* Expand / Collapse all */
-  document.getElementById('btn-expand-all').addEventListener('click', () => {
-    stack.querySelectorAll('.layer-trigger').forEach(t => {
-      openLayer(t, document.getElementById(t.getAttribute('aria-controls')));
-    });
-  });
-  document.getElementById('btn-collapse-all').addEventListener('click', () => {
-    stack.querySelectorAll('.layer-trigger').forEach(t => {
-      closeLayer(t, document.getElementById(t.getAttribute('aria-controls')));
     });
   });
 }
 
-buildAccordion();
+renderDomains();
+renderArchetypes();
 attachEvents();
 </script>
 </body>

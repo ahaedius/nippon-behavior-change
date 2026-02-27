@@ -6,23 +6,13 @@
       ".firebaserc",
       ".git",
       ".gitignore",
-      "README.md"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
+      "README.md",
+      "*.pdf"
     ],
     "headers": [
       {
         "source": "**/*.html",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "no-cache"
-          }
-        ]
+        "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
       }
     ]
   }
